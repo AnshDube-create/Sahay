@@ -1,5 +1,5 @@
 import os
-from pipes import quote
+import shlex
 import re
 import sqlite3
 import struct
@@ -98,7 +98,7 @@ def hotword():
                 # pressing shorcut key win+j
                 import pyautogui as autogui
                 autogui.keyDown("win")
-                autogui.press("j")
+                autogui.press("s")
                 time.sleep(2)
                 autogui.keyUp("win")
                 
@@ -152,7 +152,7 @@ def whatsApp(mobile_no, message, flag, name):
 
 
     # Encode the message for URL
-    encoded_message = quote(message)
+    encoded_message = shlex.quote(message)
     print(encoded_message)
     # Construct the URL
     whatsapp_url = f"whatsapp://send?phone={mobile_no}&text={encoded_message}"
@@ -176,7 +176,7 @@ def whatsApp(mobile_no, message, flag, name):
 # chat bot 
 def chatBot(query):
     user_input = query.lower()
-    chatbot = hugchat.ChatBot(cookie_path="engine\cookies.json")
+    chatbot = hugchat.ChatBot(cookie_path="engine\\cookies.json")
     id = chatbot.new_conversation()
     chatbot.change_conversation(id)
     response =  chatbot.chat(user_input)
